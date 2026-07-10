@@ -3,7 +3,7 @@ import { styled } from "react-native-css";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { type Edge, SafeAreaView } from "react-native-safe-area-context";
 
-import { classnames } from "@/utils/helpers";
+import { classnames } from "@/helpers";
 
 // @ts-expect-error TS2590: styled(KeyboardAwareScrollView) produces a union type too complex to represent
 const ScrollView = styled(KeyboardAwareScrollView);

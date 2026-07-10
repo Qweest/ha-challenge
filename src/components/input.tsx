@@ -1,6 +1,6 @@
 import { TextInput, type TextInputProps } from "react-native";
 
-import { classnames } from "@/utils/helpers";
+import { classnames } from "@/helpers";
 
 export function Input({
 	className,

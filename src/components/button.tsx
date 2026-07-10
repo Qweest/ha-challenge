@@ -11,7 +11,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { Text } from "@/components/text";
-import { classnames } from "@/utils/helpers";
+import { classnames } from "@/helpers";
 
 type ButtonVariant = "primary" | "secondary";
 

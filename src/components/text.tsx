@@ -1,6 +1,6 @@
 import { Text as RNText, type TextProps as RNTextProps } from "react-native";
 
-import { classnames } from "@/utils/helpers";
+import { classnames } from "@/helpers";
 
 type TextVariant = "primary" | "secondary" | "danger";
 type TextSize = "small" | "medium" | "large";
