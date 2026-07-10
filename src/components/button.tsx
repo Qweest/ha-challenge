@@ -1,3 +1,5 @@
+import Ionicons from "@react-native-vector-icons/ionicons";
+import type { ComponentProps } from "react";
 import {
 	ActivityIndicator,
 	type GestureResponderEvent,
@@ -20,6 +22,7 @@ type ButtonProps = Omit<PressableProps, "children"> & {
 	children: string;
 	variant?: ButtonVariant;
 	loading?: boolean;
+	iconRight?: ComponentProps<typeof Ionicons>["name"];
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -36,6 +39,7 @@ export function Button({
 	children,
 	className,
 	variant = "primary",
+	iconRight,
 	loading,
 	disabled,
 	onPressIn,
@@ -67,7 +71,7 @@ export function Button({
 				onPressOut={handlePressOut}
 				disabled={disabled || loading}
 				className={classnames(
-					"items-center justify-center rounded-xl px-4 py-2 h-15 disabled:opacity-50",
+					"flex-row gap-2 items-center justify-center rounded-xl px-4 py-2 h-15 disabled:opacity-50",
 					variantClasses[variant],
 					className,
 					(disabled || loading) && "opacity-50",
@@ -82,6 +86,14 @@ export function Button({
 				>
 					{children}
 				</Text>
+
+				{iconRight ? (
+					<Ionicons
+						name={iconRight}
+						size={18}
+						color={Themes.dark.colors.text}
+					/>
+				) : null}
 
 				<ActivityIndicator
 					color={Themes.dark.colors.text}

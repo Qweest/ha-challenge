@@ -49,7 +49,11 @@ export default function RootLayout() {
 			<ThemeProvider value={Themes.dark}>
 				<KeyboardProvider>
 					<Stack
-						screenOptions={{ headerTitle: "", headerBackground: () => null }}
+						screenOptions={{
+							headerTitle: "",
+							headerBackground: () => null,
+							headerTransparent: true,
+						}}
 					>
 						<Stack.Protected guard={!token}>
 							<Stack.Screen name="login" />

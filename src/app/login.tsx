@@ -46,10 +46,7 @@ export default function Login() {
 	};
 
 	return (
-		<Page
-			keyboardShouldPersistTaps="handled"
-			contentContainerClassName="justify-center"
-		>
+		<Page>
 			<View className="gap-2 pb-4">
 				<Text size="xlarge">Welcome</Text>
 				<Text variant="secondary">Sign in to see your points and rewards.</Text>

@@ -5,7 +5,7 @@ import { classnames } from "@/helpers";
 type TextVariant = "primary" | "secondary" | "danger";
 type TextSize = "small" | "medium" | "large" | "xlarge";
 
-interface TextProps extends RNTextProps {
+export interface TextProps extends RNTextProps {
 	variant?: TextVariant;
 	size?: TextSize;
 	className?: string;

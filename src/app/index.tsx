@@ -1,17 +1,35 @@
 import { Ionicons } from "@react-native-vector-icons/ionicons";
+import { useQueryClient } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { useSetAtom } from "jotai";
-import { Alert, Pressable } from "react-native";
+import { useState } from "react";
+import { Alert, Pressable, RefreshControl, View } from "react-native";
 
-import { useProfile } from "@/api/hooks";
+import { useCustomerRelationship, useProfile } from "@/api/hooks";
 import { tokenAtom } from "@/atoms";
+import { Card } from "@/components/card";
+import { NumberText } from "@/components/number-text";
 import { Page } from "@/components/page";
+import { Text } from "@/components/text";
 import { UserCard } from "@/components/user-card";
 import Themes from "@/theme";
 
 export default function Home() {
+	const queryClient = useQueryClient();
 	const setToken = useSetAtom(tokenAtom);
 	const profile = useProfile();
+	const customerRelationship = useCustomerRelationship();
+	const [refreshing, setRefreshing] = useState(false);
+
+	const refresh = async () => {
+		setRefreshing(true);
+
+		try {
+			await queryClient.refetchQueries({ type: "active" });
+		} finally {
+			setRefreshing(false);
+		}
+	};
 
 	const logout = () => {
 		Alert.alert("Log Out", "Are you sure you want to log out?", [
@@ -28,7 +46,16 @@ export default function Home() {
 	};
 
 	return (
-		<Page edges={["bottom"]}>
+		<Page
+			contentContainerClassName="gap-6"
+			refreshControl={
+				<RefreshControl
+					refreshing={refreshing}
+					onRefresh={refresh}
+					tintColor={Themes.dark.colors.text}
+				/>
+			}
+		>
 			<Stack.Screen
 				options={{
 					title: "",
@@ -55,6 +82,28 @@ export default function Home() {
 				email={profile.data?.email}
 				loading={profile.isLoading}
 			/>
+
+			<View className="flex-row gap-6">
+				<Card
+					className="aspect-square flex-1 items-center justify-center gap-2 bg-orange-300/10"
+					loading={customerRelationship.isLoading}
+				>
+					<NumberText
+						value={customerRelationship.data?.points ?? 0}
+						className="text-5xl font-bold text-orange-500"
+					/>
+					<Text variant="secondary" className="font-semibold">
+						Points
+					</Text>
+				</Card>
+
+				<Card className="aspect-square flex-1 overflow-hidden">
+					<Pressable className="flex-1 gap-2 p-2 items-center justify-center bg-blue-950/10 active:bg-blue-950/20">
+						<Ionicons name="scan" size={36} color={Themes.dark.colors.text} />
+						<Text className="font-semibold">Scan code</Text>
+					</Pressable>
+				</Card>
+			</View>
 		</Page>
 	);
 }

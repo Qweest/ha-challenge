@@ -16,7 +16,10 @@ export function Card({
 }: CardProps) {
 	return (
 		<View
-			className={classnames("rounded-2xl bg-zinc-900 p-4", className)}
+			className={classnames(
+				"rounded-3xl bg-zinc-900 shadow-lg shadow-black",
+				className,
+			)}
 			{...props}
 		>
 			{loading ? (
