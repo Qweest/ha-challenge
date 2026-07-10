@@ -1,6 +1,7 @@
 # Candidate API Spec
 
 Build a simple loyalty app with react native against the specified API
+
 * Estimated time: 4-6h
 * Design and layout is completely up to you
 * Decide on your own where to spend most of your time: Design, Performance, Tests, Architecture...
@@ -15,15 +16,15 @@ Submit your challenge as git project on github and make it public or invite [hel
 
 ## Base setup
 
-- Base URL: `https://api.demo.helloagain.at`
-- Use following client ID: 753d6b63-dc6b-4b28-83fc-6ead93660958
-- Use following user
-  - username: testUser@dev.null
-  - password: challenge-2026
-- Use `Accept: application/json`
-- Use `Content-Type: application/json` for `POST`
-- Use auth header after login: `Authorization: Token <token>`
-- To scan a coupon, use following code in a qr code: `YFQY2D`
+* Base URL: `https://api.demo.helloagain.at`
+* Use following client ID: 753d6b63-dc6b-4b28-83fc-6ead93660958
+* Use following user
+  * username: <testUser@dev.null>
+  * password: challenge-2026
+* Use `Accept: application/json`
+* Use `Content-Type: application/json` for `POST`
+* Use auth header after login: `Authorization: Token <token>`
+* To scan a coupon, use following code in a qr code: `YFQY2D`
 
 ## App flow
 
@@ -115,12 +116,12 @@ Response shape:
 
 Fields the app should use:
 
-- `id`
-- `name`
-- `description`
-- `is_redeemable`
-- `needed_points`
-- `cr_points`
+* `id`
+* `name`
+* `description`
+* `is_redeemable`
+* `needed_points`
+* `cr_points`
 
 ### 5. Redeem QR code to get points
 
@@ -165,9 +166,9 @@ Response:
 
 ## Minimum app behavior
 
-- Login with email and password
-- Show current points from CR
-- Show profile info
-- list rewards from `/bounties/`
-- Allow code / QR redemption to get points
-- Allow reward redemption for redeemable bounties
+* Login with email and password
+* Show current points from CR
+* Show profile info
+* list rewards from `/bounties/`
+* Allow code / QR redemption to get points
+* Allow reward redemption for redeemable bounties
