@@ -1,19 +1,17 @@
 import { Ionicons } from "@react-native-vector-icons/ionicons";
-import { Redirect, Stack } from "expo-router";
-import { useAtom } from "jotai";
-import { Alert, Pressable, View } from "react-native";
+import { Stack } from "expo-router";
+import { useSetAtom } from "jotai";
+import { Alert, Pressable } from "react-native";
 
+import { useProfile } from "@/api/hooks";
 import { tokenAtom } from "@/atoms";
 import { Page } from "@/components/page";
-import { Text } from "@/components/text";
+import { UserCard } from "@/components/user-card";
 import Themes from "@/theme";
 
-export default function Root() {
-	const [token, setToken] = useAtom(tokenAtom);
-
-	if (!token) {
-		return <Redirect href="/login" />;
-	}
+export default function Home() {
+	const setToken = useSetAtom(tokenAtom);
+	const profile = useProfile();
 
 	const logout = () => {
 		Alert.alert("Log Out", "Are you sure you want to log out?", [
@@ -40,7 +38,7 @@ export default function Root() {
 							onPress={logout}
 							accessibilityRole="button"
 							accessibilityLabel="Log out"
-							className="w-10 h-10 items-center justify-center"
+							className="h-10 w-10 items-center justify-center"
 						>
 							<Ionicons
 								name="log-out-outline"
@@ -51,9 +49,12 @@ export default function Root() {
 					),
 				}}
 			/>
-			<View className="flex-1 items-center justify-center">
-				<Text>Edit src/app/index.tsx to edit this screen.</Text>
-			</View>
+
+			<UserCard
+				name={profile.data?.name}
+				email={profile.data?.email}
+				loading={profile.isLoading}
+			/>
 		</Page>
 	);
 }

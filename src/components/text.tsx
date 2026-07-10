@@ -34,6 +34,7 @@ export function Text({
 	return (
 		<RNText
 			{...props}
+			maxFontSizeMultiplier={1.2}
 			className={classnames(
 				variantClasses[variant],
 				sizeClasses[size],

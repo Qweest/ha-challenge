@@ -3,7 +3,7 @@ import "@/global.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack, ThemeProvider } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 
@@ -16,7 +16,7 @@ SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true });
 
 export default function RootLayout() {
-	const setToken = useSetAtom(tokenAtom);
+	const [token, setToken] = useAtom(tokenAtom);
 	const [initialized, setInitialized] = useState(false);
 
 	useEffect(() => {
@@ -50,7 +50,14 @@ export default function RootLayout() {
 				<KeyboardProvider>
 					<Stack
 						screenOptions={{ headerTitle: "", headerBackground: () => null }}
-					/>
+					>
+						<Stack.Protected guard={!token}>
+							<Stack.Screen name="login" />
+						</Stack.Protected>
+						<Stack.Protected guard={Boolean(token)}>
+							<Stack.Screen name="index" />
+						</Stack.Protected>
+					</Stack>
 				</KeyboardProvider>
 			</ThemeProvider>
 		</QueryClientProvider>

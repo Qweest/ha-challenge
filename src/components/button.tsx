@@ -12,6 +12,7 @@ import Animated, {
 
 import { Text } from "@/components/text";
 import { classnames } from "@/helpers";
+import Themes from "@/theme";
 
 type ButtonVariant = "primary" | "secondary";
 
@@ -83,7 +84,7 @@ export function Button({
 				</Text>
 
 				<ActivityIndicator
-					color="#fff"
+					color={Themes.dark.colors.text}
 					className={classnames("absolute opacity-0", loading && "opacity-100")}
 				/>
 			</Pressable>
