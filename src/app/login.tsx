@@ -1,4 +1,4 @@
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useSetAtom } from "jotai";
 import { useState } from "react";
 import { View } from "react-native";
@@ -16,8 +16,8 @@ export default function Login() {
 	const setToken = useSetAtom(tokenAtom);
 	const login = useLogin();
 
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("testUser@dev.null");
+	const [password, setPassword] = useState("challenge-2026");
 	const [error, setError] = useState<string | null>(null);
 
 	const handleLogin = async () => {
@@ -46,11 +46,12 @@ export default function Login() {
 	};
 
 	return (
-		<Page keyboardShouldPersistTaps="handled" contentClassName="justify-center">
-			<Stack.Screen options={{ headerShown: false }} />
-
+		<Page
+			keyboardShouldPersistTaps="handled"
+			contentContainerClassName="justify-center"
+		>
 			<View className="gap-2 pb-4">
-				<Text size="large">Welcome</Text>
+				<Text size="xlarge">Welcome</Text>
 				<Text variant="secondary">Sign in to see your points and rewards.</Text>
 			</View>
 

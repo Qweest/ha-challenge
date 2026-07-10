@@ -3,7 +3,7 @@ import { Text as RNText, type TextProps as RNTextProps } from "react-native";
 import { classnames } from "@/helpers";
 
 type TextVariant = "primary" | "secondary" | "danger";
-type TextSize = "small" | "medium" | "large";
+type TextSize = "small" | "medium" | "large" | "xlarge";
 
 interface TextProps extends RNTextProps {
 	variant?: TextVariant;
@@ -21,6 +21,7 @@ const sizeClasses: Record<TextSize, string> = {
 	small: "text-sm",
 	medium: "text-base",
 	large: "text-2xl font-semibold",
+	xlarge: "text-4xl font-bold",
 };
 
 export function Text({

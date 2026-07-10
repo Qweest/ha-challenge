@@ -7,7 +7,14 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**", "!**/expo-symbol 2.svg"]
+		"includes": [
+			"**",
+			"!!**/expo-symbol 2.svg",
+			"!!node_modules",
+			"!!ios",
+			"!!android",
+			"!!expo"
+		]
 	},
 	"formatter": {
 		"enabled": true,

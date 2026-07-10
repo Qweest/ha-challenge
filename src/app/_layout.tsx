@@ -1,7 +1,7 @@
 import "@/global.css";
 
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Stack } from "expo-router";
+import { Stack, ThemeProvider } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import { KeyboardProvider } from "react-native-keyboard-controller";
 import { queryClient } from "@/api/api";
 import { tokenAtom } from "@/atoms";
 import { getItem } from "@/storage";
+import Themes from "@/theme";
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true });
@@ -45,9 +46,13 @@ export default function RootLayout() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<KeyboardProvider>
-				<Stack />
-			</KeyboardProvider>
+			<ThemeProvider value={Themes.dark}>
+				<KeyboardProvider>
+					<Stack
+						screenOptions={{ headerTitle: "", headerBackground: () => null }}
+					/>
+				</KeyboardProvider>
+			</ThemeProvider>
 		</QueryClientProvider>
 	);
 }

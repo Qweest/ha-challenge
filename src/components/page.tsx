@@ -6,10 +6,10 @@ import { type Edge, SafeAreaView } from "react-native-safe-area-context";
 import { classnames } from "@/helpers";
 
 // @ts-expect-error TS2590: styled(KeyboardAwareScrollView) produces a union type too complex to represent
-const ScrollView = styled(KeyboardAwareScrollView);
+const StyledScrollView = styled(KeyboardAwareScrollView);
+const StyledSafeAreaView = styled(SafeAreaView);
 
 export interface PageProps extends ScrollViewProps {
-	contentClassName?: string;
 	edges?: Edge[];
 }
 
@@ -17,24 +17,23 @@ export function Page({
 	children,
 	className,
 	contentContainerClassName,
-	contentClassName,
-	edges,
-	...props
+	edges = ["bottom"],
+	...rest
 }: PageProps) {
 	return (
-		<ScrollView
+		<StyledScrollView
 			bottomOffset={62}
 			alwaysBounceVertical={false}
-			className={classnames("flex-1 bg-zinc-950", className)}
-			contentContainerClassName={classnames("grow", contentContainerClassName)}
-			{...props}
+			className={classnames("flex-1", className)}
+			contentContainerClassName={"grow"}
+			{...rest}
 		>
-			<SafeAreaView
+			<StyledSafeAreaView
 				edges={edges}
-				className={classnames("grow gap-4 px-5 py-6", contentClassName)}
+				className={classnames("flex-1 gap-4 p-6", contentContainerClassName)}
 			>
 				{children}
-			</SafeAreaView>
-		</ScrollView>
+			</StyledSafeAreaView>
+		</StyledScrollView>
 	);
 }
