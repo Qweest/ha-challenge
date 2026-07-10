@@ -1,5 +1,7 @@
 import { TextInput, type TextInputProps } from "react-native";
 
+import { classnames } from "@/utils/helpers";
+
 export function Input({
 	className,
 	placeholderTextColor = "#71717a",
@@ -9,7 +11,10 @@ export function Input({
 		<TextInput
 			{...props}
 			placeholderTextColor={placeholderTextColor}
-			className={`rounded-xl border border-zinc-700 bg-zinc-900 p-4 text-base text-zinc-100 ${className ?? ""}`}
+			className={classnames(
+				"rounded-xl border border-zinc-700 bg-zinc-900 h-15 px-4 py-0 text-base leading-5 text-zinc-100 focus:border-orange-500",
+				className,
+			)}
 		/>
 	);
 }

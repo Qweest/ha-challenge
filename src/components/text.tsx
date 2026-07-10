@@ -1,16 +1,15 @@
-import {
-	type TextProps as NativeTextProps,
-	Text as RNText,
-} from "react-native";
+import { Text as RNText, type TextProps as RNTextProps } from "react-native";
+
+import { classnames } from "@/utils/helpers";
 
 type TextVariant = "primary" | "secondary" | "danger";
 type TextSize = "small" | "medium" | "large";
 
-type TextProps = Omit<NativeTextProps, "children"> & {
-	children: string;
+interface TextProps extends RNTextProps {
 	variant?: TextVariant;
 	size?: TextSize;
-};
+	className?: string;
+}
 
 const variantClasses: Record<TextVariant, string> = {
 	primary: "text-zinc-100",
@@ -34,7 +33,11 @@ export function Text({
 	return (
 		<RNText
 			{...props}
-			className={`${variantClasses[variant]} ${sizeClasses[size]} ${className ?? ""}`}
+			className={classnames(
+				variantClasses[variant],
+				sizeClasses[size],
+				className,
+			)}
 		>
 			{children}
 		</RNText>

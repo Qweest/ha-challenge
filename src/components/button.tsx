@@ -1,4 +1,5 @@
 import {
+	ActivityIndicator,
 	type GestureResponderEvent,
 	Pressable,
 	type PressableProps,
@@ -10,21 +11,23 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { Text } from "@/components/text";
+import { classnames } from "@/utils/helpers";
 
 type ButtonVariant = "primary" | "secondary";
 
 type ButtonProps = Omit<PressableProps, "children"> & {
 	children: string;
 	variant?: ButtonVariant;
+	loading?: boolean;
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-	primary: "bg-orange-500 active:bg-orange-600",
+	primary: "bg-orange-700 active:bg-orange-800",
 	secondary: "border border-zinc-700 bg-zinc-800 active:bg-zinc-700",
 };
 
 const textVariantClasses: Record<ButtonVariant, string> = {
-	primary: "text-zinc-950",
+	primary: "text-zinc-100",
 	secondary: "text-zinc-100",
 };
 
@@ -32,6 +35,8 @@ export function Button({
 	children,
 	className,
 	variant = "primary",
+	loading,
+	disabled,
 	onPressIn,
 	onPressOut,
 	...props
@@ -59,11 +64,28 @@ export function Button({
 				accessibilityRole="button"
 				onPressIn={handlePressIn}
 				onPressOut={handlePressOut}
-				className={`items-center justify-center rounded-xl px-5 py-3.5 disabled:opacity-50 ${variantClasses[variant]} ${className ?? ""}`}
+				disabled={disabled || loading}
+				className={classnames(
+					"items-center justify-center rounded-xl px-4 py-2 h-15 disabled:opacity-50",
+					variantClasses[variant],
+					className,
+					(disabled || loading) && "opacity-50",
+				)}
 			>
-				<Text className={`font-semibold ${textVariantClasses[variant]}`}>
+				<Text
+					className={classnames(
+						"font-semibold",
+						textVariantClasses[variant],
+						loading && "opacity-0",
+					)}
+				>
 					{children}
 				</Text>
+
+				<ActivityIndicator
+					color="#fff"
+					className={classnames("absolute opacity-0", loading && "opacity-100")}
+				/>
 			</Pressable>
 		</Animated.View>
 	);

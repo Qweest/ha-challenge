@@ -25,7 +25,11 @@ export async function setItem(key: StorageKey, value: string) {
 		return;
 	}
 
-	await SecureStore.setItemAsync(key, value);
+	try {
+		await SecureStore.setItemAsync(key, value);
+	} catch (e) {
+		console.error(e);
+	}
 }
 
 export async function deleteItem(key: StorageKey) {
@@ -34,5 +38,9 @@ export async function deleteItem(key: StorageKey) {
 		return;
 	}
 
-	await SecureStore.deleteItemAsync(key);
+	try {
+		await SecureStore.deleteItemAsync(key);
+	} catch (e) {
+		console.warn(e);
+	}
 }

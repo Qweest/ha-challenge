@@ -11,10 +11,9 @@ export const apiClient = axios.create({
 export function setApiToken(token: string | null) {
 	if (token) {
 		apiClient.defaults.headers.common.Authorization = `Token ${token}`;
-		return;
+	} else {
+		delete apiClient.defaults.headers.common.Authorization;
 	}
-
-	delete apiClient.defaults.headers.common.Authorization;
 }
 
 export const queryClient = new QueryClient();

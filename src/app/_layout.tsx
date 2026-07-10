@@ -5,6 +5,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 
 import { queryClient } from "@/api/api";
 import { tokenAtom } from "@/atoms";
@@ -19,8 +20,13 @@ export default function RootLayout() {
 
 	useEffect(() => {
 		const init = async () => {
-			const token = await getItem("access-token");
-			if (token) setToken(token);
+			try {
+				const token = await getItem("access-token");
+				setToken(token);
+			} catch (e) {
+				console.error(e);
+			}
+
 			setInitialized(true);
 		};
 
@@ -39,7 +45,9 @@ export default function RootLayout() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Stack />
+			<KeyboardProvider>
+				<Stack />
+			</KeyboardProvider>
 		</QueryClientProvider>
 	);
 }
