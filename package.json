@@ -8,7 +8,7 @@
 		"start": "bun expo start",
 		"android": "bun expo run:android",
 		"ios": "bun expo run:ios",
-		"web": "bun expo run:web",
+		"web": "bun expo start --web",
 		"lint": "bunx --bun @biomejs/biome check --write"
 	},
 	"dependencies": {
@@ -27,9 +27,11 @@
 		"expo-symbols": "~57.0.0",
 		"expo-system-ui": "~57.0.0",
 		"expo-web-browser": "~57.0.0",
+		"nativewind": "5.0.0-preview.2",
 		"react": "19.2.3",
 		"react-dom": "19.2.3",
 		"react-native": "0.86.0",
+		"react-native-css": "^3.0.7",
 		"react-native-gesture-handler": "~2.32.0",
 		"react-native-reanimated": "4.5.0",
 		"react-native-safe-area-context": "~5.7.0",
@@ -39,7 +41,13 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.3",
+		"@tailwindcss/postcss": "^4.3.2",
 		"@types/react": "~19.2.2",
+		"postcss": "^8.5.16",
+		"tailwindcss": "^4",
 		"typescript": "~6.0.3"
+	},
+	"overrides": {
+		"lightningcss": "1.30.1"
 	}
 }
