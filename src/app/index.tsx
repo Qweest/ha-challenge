@@ -3,7 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { router, Stack } from "expo-router";
 import { useSetAtom } from "jotai";
 import { useState } from "react";
-import { Alert, Pressable, RefreshControl, View } from "react-native";
+import { Alert, RefreshControl, View } from "react-native";
 
 import {
 	useCustomerRelationship,
@@ -15,6 +15,7 @@ import { tokenAtom } from "@/atoms";
 import { Card } from "@/components/card";
 import { NumberText } from "@/components/number-text";
 import { Page } from "@/components/page";
+import { Pressable } from "@/components/pressable";
 import { RewardCard } from "@/components/reward-card";
 import { Text } from "@/components/text";
 import { UserCard } from "@/components/user-card";
@@ -72,6 +73,8 @@ export default function Home() {
 					headerBackground: () => null,
 					headerRight: () => (
 						<Pressable
+							animated={false}
+							haptics={false}
 							onPress={logout}
 							accessibilityRole="button"
 							accessibilityLabel="Log out"
@@ -107,16 +110,16 @@ export default function Home() {
 					</Text>
 				</Card>
 
-				<Card className="aspect-square flex-1 overflow-hidden">
-					<Pressable
-						accessibilityRole="button"
-						onPress={() => router.navigate("/scan-code")}
-						className="flex-1 items-center justify-center gap-2 bg-blue-950/10 p-2 active:bg-blue-950/20"
-					>
+				<Pressable
+					accessibilityRole="button"
+					onPress={() => router.navigate("/scan-code")}
+					className="aspect-square flex-1"
+				>
+					<Card className="flex-1 items-center justify-center gap-2 bg-sky-800/10">
 						<Ionicons name="scan" size={36} color={Themes.dark.colors.text} />
 						<Text className="font-semibold">Scan code</Text>
-					</Pressable>
-				</Card>
+					</Card>
+				</Pressable>
 			</View>
 
 			<Text className="mt-4" size="large">
