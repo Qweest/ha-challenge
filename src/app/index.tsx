@@ -1,9 +1,8 @@
 import { Ionicons } from "@react-native-vector-icons/ionicons";
 import { useQueryClient } from "@tanstack/react-query";
 import { router, Stack } from "expo-router";
-import { useSetAtom } from "jotai";
 import { useState } from "react";
-import { Alert, RefreshControl, View } from "react-native";
+import { Platform, RefreshControl, View } from "react-native";
 
 import {
 	useCustomerRelationship,
@@ -11,7 +10,6 @@ import {
 	useRedeemReward,
 	useRewards,
 } from "@/api/hooks";
-import { tokenAtom } from "@/atoms";
 import { Card } from "@/components/card";
 import { NumberText } from "@/components/number-text";
 import { Page } from "@/components/page";
@@ -22,8 +20,6 @@ import { UserCard } from "@/components/user-card";
 import Themes from "@/theme";
 
 export default function Home() {
-	const setToken = useSetAtom(tokenAtom);
-
 	const queryClient = useQueryClient();
 	const profile = useProfile();
 	const customerRelationship = useCustomerRelationship();
@@ -42,22 +38,9 @@ export default function Home() {
 		}
 	};
 
-	const logout = () => {
-		Alert.alert("Log Out", "Are you sure you want to log out?", [
-			{
-				text: "Yes",
-				isPreferred: true,
-				onPress: () => setToken(null),
-			},
-			{
-				text: "Cancel",
-				style: "cancel",
-			},
-		]);
-	};
-
 	return (
 		<Page
+			contentInsetAdjustmentBehavior="always"
 			contentContainerClassName="gap-6"
 			refreshControl={
 				<RefreshControl
@@ -69,24 +52,9 @@ export default function Home() {
 		>
 			<Stack.Screen
 				options={{
-					title: "",
-					headerBackground: () => null,
-					headerRight: () => (
-						<Pressable
-							animated={false}
-							haptics={false}
-							onPress={logout}
-							accessibilityRole="button"
-							accessibilityLabel="Log out"
-							className="h-10 w-10 items-center justify-center"
-						>
-							<Ionicons
-								name="log-out-outline"
-								size={24}
-								color={Themes.dark.colors.notification}
-							/>
-						</Pressable>
-					),
+					headerShown: true,
+					title: "Dashboard",
+					headerTransparent: Platform.OS === "ios",
 				}}
 			/>
 

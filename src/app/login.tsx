@@ -46,7 +46,7 @@ export default function Login() {
 	};
 
 	return (
-		<Page>
+		<Page contentContainerClassName="justify-center">
 			<View className="gap-2 pb-4">
 				<Text size="xlarge">Welcome</Text>
 				<Text variant="secondary">Sign in to see your points and rewards.</Text>

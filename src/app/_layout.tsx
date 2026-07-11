@@ -48,13 +48,7 @@ export default function RootLayout() {
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider value={Themes.dark}>
 				<KeyboardProvider>
-					<Stack
-						screenOptions={{
-							headerTitle: "",
-							headerBackground: () => null,
-							headerTransparent: true,
-						}}
-					>
+					<Stack screenOptions={{ headerShown: false }}>
 						<Stack.Protected guard={!token}>
 							<Stack.Screen name="login" />
 						</Stack.Protected>
@@ -64,7 +58,6 @@ export default function RootLayout() {
 								name="scan-code"
 								options={{
 									presentation: "formSheet",
-									headerShown: false,
 									sheetAllowedDetents: [0.9],
 									sheetGrabberVisible: true,
 								}}
