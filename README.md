@@ -2,6 +2,8 @@
 
 A small loyalty app built with React Native and Expo. Users can sign in/out, view their profile and points balance, browse and redeem rewards, and scan a coupon QR code to receive points.
 
+https://github.com/user-attachments/assets/3d95ecfc-e736-4d3f-b95e-ec7e8ec5518f
+
 ## Run locally
 
 1. Install dependencies:
