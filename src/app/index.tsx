@@ -5,20 +5,30 @@ import { useSetAtom } from "jotai";
 import { useState } from "react";
 import { Alert, Pressable, RefreshControl, View } from "react-native";
 
-import { useCustomerRelationship, useProfile } from "@/api/hooks";
+import {
+	useCustomerRelationship,
+	useProfile,
+	useRedeemReward,
+	useRewards,
+} from "@/api/hooks";
 import { tokenAtom } from "@/atoms";
 import { Card } from "@/components/card";
 import { NumberText } from "@/components/number-text";
 import { Page } from "@/components/page";
+import { RewardCard } from "@/components/reward-card";
 import { Text } from "@/components/text";
 import { UserCard } from "@/components/user-card";
 import Themes from "@/theme";
 
 export default function Home() {
-	const queryClient = useQueryClient();
 	const setToken = useSetAtom(tokenAtom);
+
+	const queryClient = useQueryClient();
 	const profile = useProfile();
 	const customerRelationship = useCustomerRelationship();
+	const rewards = useRewards();
+	const redeemReward = useRedeemReward();
+
 	const [refreshing, setRefreshing] = useState(false);
 
 	const refresh = async () => {
@@ -98,12 +108,36 @@ export default function Home() {
 				</Card>
 
 				<Card className="aspect-square flex-1 overflow-hidden">
-					<Pressable className="flex-1 gap-2 p-2 items-center justify-center bg-blue-950/10 active:bg-blue-950/20">
+					<Pressable className="flex-1 items-center justify-center gap-2 bg-blue-950/10 p-2 active:bg-blue-950/20">
 						<Ionicons name="scan" size={36} color={Themes.dark.colors.text} />
 						<Text className="font-semibold">Scan code</Text>
 					</Pressable>
 				</Card>
 			</View>
+
+			<Text className="mt-4" size="large">
+				Rewards
+			</Text>
+
+			{rewards.isLoading ? (
+				<Card className="h-40" loading />
+			) : rewards.data?.length ? (
+				rewards.data.map((reward) => (
+					<RewardCard
+						key={reward.id}
+						name={reward.name}
+						description={reward.description}
+						points={reward.needed_points}
+						redeemable={reward.is_redeemable}
+						loading={
+							redeemReward.isPending && redeemReward.variables === reward.id
+						}
+						onRedeem={() => redeemReward.mutate(reward.id)}
+					/>
+				))
+			) : (
+				<Text variant="secondary">No rewards available.</Text>
+			)}
 		</Page>
 	);
 }
