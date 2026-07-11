@@ -1,0 +1,14 @@
+appId: ${APP_ID}
+name: Redeem a reward from Home
+tags:
+  - smoke
+---
+- runFlow: common/login.yaml
+- assertVisible: Rewards
+- tapOn:
+    text: Redeem
+    index: 0
+- waitForAnimationToEnd
+- assertVisible: Dashboard
+- assertVisible: Rewards
+

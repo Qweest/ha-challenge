@@ -1,0 +1,13 @@
+appId: ${APP_ID}
+name: Login screen
+tags:
+  - smoke
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+- assertVisible: Welcome
+- assertVisible: Sign in to see your points and rewards.
+- tapOn: Sign in
+- assertVisible: Please enter your email and password.
+

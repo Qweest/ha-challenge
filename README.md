@@ -76,3 +76,4 @@ Skills:
 19. (Prompt) Add QR code scanning using Expo Camera and a native form sheet screen.
 20. Camera permissions adjustments.
 21. Refactor, polish and AI code review.
+22. (Prompt) Add minimal E2E tests with Maestro.

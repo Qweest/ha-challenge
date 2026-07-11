@@ -1,0 +1,11 @@
+appId: ${APP_ID}
+name: Log out from Home
+tags:
+  - smoke
+---
+- runFlow: common/login.yaml
+- tapOn: Log out
+- assertVisible: Are you sure you want to log out?
+- tapOn: "Yes"
+- assertVisible: Welcome
+- assertVisible: Sign in
