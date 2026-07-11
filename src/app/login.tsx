@@ -16,8 +16,8 @@ export default function Login() {
 	const setToken = useSetAtom(tokenAtom);
 	const login = useLogin();
 
-	const [email, setEmail] = useState("testUser@dev.null");
-	const [password, setPassword] = useState("challenge-2026");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const [error, setError] = useState<string | null>(null);
 
 	const handleLogin = async () => {

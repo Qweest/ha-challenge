@@ -1,56 +1,78 @@
-# Welcome to your Expo app 👋
+# Hello Again Challenge
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A small loyalty app built with React Native and Expo. Users can sign in/out, view their profile and points balance, browse and redeem rewards, and scan a coupon QR code to receive points.
 
-## Get started
+## Run locally
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
+1. Install dependencies:
 
    ```bash
-   npx expo start
+   bun install
    ```
 
-In the output, you'll find options to open the app in a
+2. Create native folders:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   bun prebuild
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+3. Install and run the build:
 
-## Get a fresh project
+   For iOS:
 
-When you're ready, run:
+   ```bash
+   bun ios
+   ```
 
-```bash
-npm run reset-project
-```
+   Or for Android:
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+   ```bash
+   bun android
+   ```
 
-### Other setup steps
+## Tooling
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- Expo and Expo Router for the application and navigation
+- TanStack Query for server state, caching, and request invalidation
+- Axios for API requests
+- Jotai and Expo SecureStore for local state and storage
+- NativeWind, Tailwind CSS, and react-native-css for styling
+- Reanimated and Expo Haptics for interaction feedback
+- Expo Camera for QR code scanning
+- React Native Render HTML for reward descriptions
 
-## Learn more
+## AI tooling
 
-To learn more about developing your project with Expo, look at the following resources:
+Agents:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Codex 5.6
 
-## Join the community
+Skills:
 
-Join our community of developers creating universal apps.
+- Native Data Fetching
+- Tailwind Setup
+- Expo UI
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Development overview
+
+1. Initialize the Expo project.
+2. Setup Biome.js for linting and formatting.
+3. (Prompt) Add basic Nativewind setup.
+4. (Prompt) Add TanStack Query + Axios. Looking at the available endpoints - setup the api foundation and helpers (queries/hooks).
+5. Manual adjustments followed by AI code review.
+6. (Prompt) Create basic components: text, input, button, page, etc.
+7. (Prompt) Implement login screen (layout + logic).
+8. Use Jotai to handle local session state, update api headers and save the token to the storage.
+9. (Prompt) Do a code review.
+10. (Prompt) Start building the home screen. Add logout button and build a user profile card.
+11. Review and refine.
+12. (Prompt) Build number component to "animate" number value when it is changing.
+13. (Prompt) Add "Score" and "Scan Code" cards.
+14. Manual adjustments followed by AI code review.
+15. (Prompt) Add pull-to-refresh.
+16. (Prompt) Implement loading bounties/rewards.
+17. (Prompt) Add react-native-html to parse reward descriptions.
+18. Review and refine.
+19. (Prompt) Add QR code scanning using Expo Camera and a native form sheet screen.
+20. Camera permissions adjustments.
+21. Refactor, polish and AI code review.

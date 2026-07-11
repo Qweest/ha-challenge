@@ -7,13 +7,7 @@ interface CardProps extends ViewProps {
 	loading?: boolean;
 }
 
-export function Card({
-	children,
-	className,
-	loading,
-	style,
-	...props
-}: CardProps) {
+export function Card({ children, className, loading, ...props }: CardProps) {
 	return (
 		<View
 			className={classnames(
