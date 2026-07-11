@@ -58,8 +58,9 @@ export default function RootLayout() {
 								name="scan-code"
 								options={{
 									presentation: "formSheet",
-									sheetAllowedDetents: [0.9],
+									sheetAllowedDetents: [0.6],
 									sheetGrabberVisible: true,
+									sheetCornerRadius: 40,
 								}}
 							/>
 						</Stack.Protected>
