@@ -1,6 +1,6 @@
 import { Ionicons } from "@react-native-vector-icons/ionicons";
 import { useQueryClient } from "@tanstack/react-query";
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { useSetAtom } from "jotai";
 import { useState } from "react";
 import { Alert, Pressable, RefreshControl, View } from "react-native";
@@ -108,7 +108,11 @@ export default function Home() {
 				</Card>
 
 				<Card className="aspect-square flex-1 overflow-hidden">
-					<Pressable className="flex-1 items-center justify-center gap-2 bg-blue-950/10 p-2 active:bg-blue-950/20">
+					<Pressable
+						accessibilityRole="button"
+						onPress={() => router.navigate("/scan-code")}
+						className="flex-1 items-center justify-center gap-2 bg-blue-950/10 p-2 active:bg-blue-950/20"
+					>
 						<Ionicons name="scan" size={36} color={Themes.dark.colors.text} />
 						<Text className="font-semibold">Scan code</Text>
 					</Pressable>

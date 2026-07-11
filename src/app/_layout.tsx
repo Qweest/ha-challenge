@@ -60,6 +60,15 @@ export default function RootLayout() {
 						</Stack.Protected>
 						<Stack.Protected guard={Boolean(token)}>
 							<Stack.Screen name="index" />
+							<Stack.Screen
+								name="scan-code"
+								options={{
+									presentation: "formSheet",
+									headerShown: false,
+									sheetAllowedDetents: [0.9],
+									sheetGrabberVisible: true,
+								}}
+							/>
 						</Stack.Protected>
 					</Stack>
 				</KeyboardProvider>
